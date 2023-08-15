@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:arxperience/styles/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -13,46 +15,33 @@ class LoginPage extends StatelessWidget {
         child: SizedBox(
           height: MediaQuery.of(context).size.height,
           child: Padding(
-            padding: EdgeInsets.all(25),
+            padding: const EdgeInsets.all(25),
             child: Column(
               // mainAxisAlignment: MainAxisAlignment.center,
               // crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Spacer(),
+                const Spacer(),
                 Image.asset("assets/images/logo.png"),
-                Text(
+                const Text(
                   "Login to Continue",
                   style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.w400,
                       fontSize: 20),
                 ),
-                Spacer(),
-                SizedBox(
-                  width: 300,
-                  child: TextField(
-                    decoration: InputDecoration(
-                        hintText: "Username",
-                        hintStyle: TextStyle(
-                          color: Colors.grey,
-                        ),
-                        //border: OutlineInputBorder(
-                        // borderRadius: BorderRadius.circular(100)),
-                        filled: true,
-                        fillColor: Colors.white.withOpacity(0.15)),
+                const Spacer(),
+                const SizedBox(
+                    width: 500,
+                    child: newTextField(
+                        hintText: "Email ID", icon: Icon(Icons.man_3))),
+                const SizedBox(height: 20),
+                const SizedBox(
+                  width: 500,
+                  child: newTextField(
+                    hintText: "Password",
+                    icon: Icon(Icons.key),
+                    hide_char: true,
                   ),
-                ),
-                SizedBox(height: 20),
-                SizedBox(
-                  width: 300,
-                  child: TextField(
-                      decoration: InputDecoration(
-                          hintText: "Password",
-                          hintStyle: TextStyle(color: Colors.grey),
-                          //border: OutlineInputBorder(
-                          // borderRadius: BorderRadius.circular(100)),
-                          filled: true,
-                          fillColor: Colors.white.withOpacity(0.15))),
                 ),
                 Align(
                   alignment: Alignment.bottomRight,
@@ -60,7 +49,7 @@ class LoginPage extends StatelessWidget {
                     onPressed: () {
                       print('Hello Bro!');
                     },
-                    child: Text(
+                    child: const Text(
                       "Forgotten Password?",
                       style: TextStyle(color: Colors.white),
                     ),
@@ -148,11 +137,53 @@ class LoginPage extends StatelessWidget {
                   ),
                 ),
                 Spacer(),
+                TextButton(
+                    onPressed: () {
+                      Navigator.of(context)
+                          .pushReplacementNamed('/home/signup');
+                    },
+                    child: Text("Don't have an account? Create one!"))
               ],
             ),
           ),
         ),
       ),
     );
+  }
+}
+
+class newTextField extends StatefulWidget {
+  final String hintText;
+  final Icon icon;
+  final bool hide_char;
+
+  const newTextField(
+      {super.key,
+      required this.hintText,
+      this.hide_char = false,
+      required this.icon});
+
+  @override
+  State<newTextField> createState() => _newTextFieldState();
+}
+
+class _newTextFieldState extends State<newTextField> {
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+
+    return TextField(
+        decoration: InputDecoration(
+            prefixIcon: widget.icon,
+            hintText: widget.hintText,
+            hintStyle: const TextStyle(
+              color: AppColors.textfield_color,
+            ),
+            border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(100),
+                borderSide: BorderSide.none),
+            filled: true,
+            fillColor: Colors.white.withOpacity(0.15)),
+        obscureText: widget.hide_char);
   }
 }
