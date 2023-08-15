@@ -102,7 +102,8 @@ class LoginPage extends StatelessWidget {
                         shape:
                             MaterialStateProperty.all<RoundedRectangleBorder>(
                                 RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(100)))),
+                                    borderRadius: BorderRadius.circular(100))
+                                    )),
                   ),
                 ),
                 SizedBox(height: 15),
@@ -140,7 +141,7 @@ class LoginPage extends StatelessWidget {
                 TextButton(
                     onPressed: () {
                       Navigator.of(context)
-                          .pushReplacementNamed('/home/signup');
+                          .pushNamed('/home/signup');
                     },
                     child: Text("Don't have an account? Create one!"))
               ],
