@@ -82,7 +82,7 @@ class _homepageState extends State<homepage> {
         body: Center(
             child: ElevatedButton(
                 onPressed: () {
-                  Navigator.of(context).pushNamed('/home/camera');
+                  Navigator.of(context).pushNamed('/home/aug');
                 },
                 child: Text("Open Camera"))));
   }
